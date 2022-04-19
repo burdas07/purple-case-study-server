@@ -200,7 +200,8 @@ const convertMoney = (req: Request, res: Response, next: NextFunction) => {
         _id: new mongoose.Types.ObjectId(),
         from: from,
         to: to,
-        amount: amount
+        amount: amount,
+        result: result
     }).save();
 
     // reply for client

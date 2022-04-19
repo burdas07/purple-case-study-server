@@ -6,7 +6,8 @@ const TransactionSchema: Schema = new Schema(
     {
         from: { type: String, required: true },
         to: { type: String, required: true },
-        amount: { type: Number }
+        amount: { type: Number },
+        result: { type: Number }
     },
     {
         timestamps: true,
