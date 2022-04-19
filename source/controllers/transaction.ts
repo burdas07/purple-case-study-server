@@ -1,8 +1,7 @@
-// import { NextFunction, Request, Response } from 'express';
-// import mongoose from 'mongoose';
-// import Transaction from '../models/transaction';
+import { NextFunction, Request, Response } from 'express';
+import mongoose from 'mongoose';
+import Transaction from '../models/transaction';
 
-/*
 const createTransaction = (req: Request, res: Response, next: NextFunction) => {
     let { author, title } = req.body;
 
@@ -31,6 +30,7 @@ const getAllTransactions = (req: Request, res: Response, next: NextFunction) => 
     Transaction.find()
         .exec()
         .then((results) => {
+            console.log(results.toString());
             return res.status(200).json({
                 transactions: results,
                 count: results.length
@@ -45,5 +45,3 @@ const getAllTransactions = (req: Request, res: Response, next: NextFunction) => 
 };
 
 export default { createTransaction, getAllTransactions };
-
-*/

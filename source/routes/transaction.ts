@@ -1,10 +1,10 @@
-/*import express from 'express';
-import controller from '../controllers/sample';
-import Transaction from '../models/transaction';
+import express from 'express';
+import controller from '../controllers/transaction';
+//import controller from '../controllers/sample';
 
 const router = express.Router();
 
-router.get('/transactions', controller.serverHealthCheck);
+router.get('/', controller.getAllTransactions);
+//router.get('/', controller.serverHealthCheck);
 
 export = router;
-*/

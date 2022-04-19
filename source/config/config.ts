@@ -7,14 +7,14 @@ const MONGO_OPTIONS = {
     useNewUrlParser: true,
     socketTimeoutMS: 30000,
     keepAlive: true,
-    poolSize: 50,
+    //    poolSize: 50,
     autoIndex: false,
     retryWrites: true
 };
 
 const MONGO_USERNAME = process.env.MONGO_USERNAME || 'purple_case_study';
 const MONGO_PASSWORD = process.env.MONGO_PASSWORD || 'purple_case_study';
-const MONGO_HOST = process.env.MONGO_URL || `cluster0.2gvxz.mongodb.net/myFirstDatabase`;
+const MONGO_HOST = process.env.MONGO_URL || `cluster0.2gvxz.mongodb.net`;
 const DB_NAME = 'purple-money';
 const PURPLE_COLLECTION_NAME = 'money-data';
 
@@ -23,7 +23,7 @@ const MONGO = {
     password: MONGO_PASSWORD,
     username: MONGO_USERNAME,
     options: MONGO_OPTIONS,
-    url: `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}`
+    url: `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}/${DB_NAME}`
 };
 
 // mongodb+srv://purple_case_study:<password>@cluster0.2gvxz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
