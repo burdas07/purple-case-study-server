@@ -3,17 +3,16 @@
 GET http://localhost:1337/api/sample/ping
 
 ###
-
 OPTIONS http://localhost:1337
 
 ###
 GET http://localhost:1337/api/convert/money
 
 ###
-GET http://localhost:1337/api/convert/money?test=asd&from=EUR&to=USD&amount=10
+GET http://localhost:1337/api/convert/money?from=EUR&to=USD&amount=5378
 
 ###
-GET http://localhost:1337/api/convert/money?from=EUR&to=USD&amount=5378
+GET http://localhost:1337/api/convert/money?from=CZK&to=EUR&amount=5378
 
 ###
 GET http://localhost:1337/api/transaction

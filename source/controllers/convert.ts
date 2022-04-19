@@ -5,11 +5,6 @@ import { Convert, ConvertQuery } from '../lib/quicktype/convertQuery';
 //
 //   const convertQuery = Convert.toConvertQuery(json);
 
-// damn pitty :(
-// import { convert } from 'cashify';
-// Error [ERR_REQUIRE_ESM]: Must use import to load ES Module: E:\SideProjects\JS\TS Express NodeJS Quickstart\typescript-express-nodejs-quickstart\node_modules\cashify\dist\index.js
-//console.log(convert(10, { from: 'EUR', to: 'GBP', base: 'EUR', rates }));
-
 // rates with EUR base from 12.4. 2022, in case API doesn't work (limit reached etc..)
 const rates = {
     AED: 3.991702,
@@ -182,29 +177,28 @@ const rates = {
     ZWL: 349.942469
 };
 
+const urlPrefixHack = 'http://yeahIKnow.NotTheBestWay';
+
 const convertHealthCheck = (req: Request, res: Response, next: NextFunction) => {
-    const queryObject = url.parse(req.url, true).query;
-    console.log(queryObject);
+    // parse the url params from request
+    const url = new URL(urlPrefixHack + req.url);
+    const from = url.searchParams.get('from');
+    const to = url.searchParams.get('to');
+    const amount = url.searchParams.get('amount');
 
-    //const convertQuery = Convert.toConvertQuery(req.url);
-    //console.log(`This is our new type safe query: ${convertQuery.amount}, ${convertQuery.from}, ${convertQuery.to}`);
+    console.log(`We are exchanging ${amount} ${from} into ${to}`);
 
-    const from = queryObject.from;
-    const to = queryObject.to;
-    const amount = queryObject.amount;
-
-    console.log(`We want to exchange ${amount} ${from} into ${to}`);
-
-    const result = convert(JSON.stringify(amount), { from: 'EUR', to: 'GBP', base: 'EUR', rates });
-
+    // convert using Cahify lib
     //const result = convert(1000, { from: 'EUR', to: 'GBP', base: 'EUR', rates });
+    const result = convert(amount || 0, { from: from || 'NULL', to: to || 'NULL', base: 'EUR', rates });
+    console.log('result: ' + result);
 
-    // let's try without a check so far
-    console.log('result: ' + convert(JSON.stringify(amount), { from: 'EUR', to: 'GBP', base: 'EUR', rates }));
-
+    // reply for client
     return res.status(200).json({
-        message: 'convert called',
-        parsedQuery: { queryObject },
+        message: 'convert called success',
+        from: from,
+        to: to,
+        amount: amount,
         result: result
     });
 };
