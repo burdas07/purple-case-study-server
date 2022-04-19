@@ -4,9 +4,6 @@
 OPTIONS http://localhost:1337
 
 ###
-GET http://localhost:1337/api/convert/money
-
-###
 GET http://localhost:1337/api/convert/money?from=EUR&to=USD&amount=5378
 
 ###

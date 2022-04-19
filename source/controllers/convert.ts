@@ -1,7 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
+import mongoose from 'mongoose';
 import url from 'url';
 import convert from '../lib/cashify/convert';
 import { Convert, ConvertQuery } from '../lib/quicktype/convertQuery';
+import Transaction from '../models/transaction';
 //
 //   const convertQuery = Convert.toConvertQuery(json);
 
@@ -194,6 +196,12 @@ const convertMoney = (req: Request, res: Response, next: NextFunction) => {
     console.log('result: ' + result);
 
     // log into the database before sending the result back to user
+    const transaction = new Transaction({
+        _id: new mongoose.Types.ObjectId(),
+        from: from,
+        to: to,
+        amount: amount
+    }).save();
 
     // reply for client
     return res.status(200).json({
@@ -207,7 +215,7 @@ const convertMoney = (req: Request, res: Response, next: NextFunction) => {
 
 const convertGetRates = (req: Request, res: Response, next: NextFunction) => {
     return res.status(200).json({
-        message: 'convert GetRates success',
+        message: 'Convert GetRates success',
         rates: rates
     });
 };
