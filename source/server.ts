@@ -9,9 +9,22 @@ import sampleRoutes from './routes/sample';
 
 // convert routes
 import convertRoutes from './routes/convert';
+import mongoose from 'mongoose';
 
 const NAMESPACE = 'Server';
 const router = express();
+
+// connect to mongo atlas
+/*
+mongoose
+    .connect(config.mongo.url, config.mongo.options)
+    .then((result) => {
+        logging.info(NAMESPACE, 'MongoAtlas Connected');
+    })
+    .catch((error) => {
+        logging.error(NAMESPACE, error.message, error);
+    });
+    */
 
 // Log the request response
 router.use((req, res, next) => {
@@ -51,6 +64,7 @@ router.use((req, res, next) => {
 // All the routes
 router.use('/api/sample', sampleRoutes);
 router.use('/api/convert', convertRoutes);
+//router.use('/api/convert');
 
 // Error handling
 router.use((req, res, next) => {
