@@ -179,7 +179,7 @@ const rates = {
 
 const urlPrefixHack = 'http://yeahIKnow.NotTheBestWay';
 
-const convertHealthCheck = (req: Request, res: Response, next: NextFunction) => {
+const convertMoney = (req: Request, res: Response, next: NextFunction) => {
     // parse the url params from request
     const url = new URL(urlPrefixHack + req.url);
     const from = url.searchParams.get('from');
@@ -193,6 +193,8 @@ const convertHealthCheck = (req: Request, res: Response, next: NextFunction) => 
     const result = convert(amount || 0, { from: from || 'NULL', to: to || 'NULL', base: 'EUR', rates });
     console.log('result: ' + result);
 
+    // log into the database before sending the result back to user
+
     // reply for client
     return res.status(200).json({
         message: 'convert called success',
@@ -203,4 +205,11 @@ const convertHealthCheck = (req: Request, res: Response, next: NextFunction) => 
     });
 };
 
-export default { convertHealthCheck };
+const convertGetRates = (req: Request, res: Response, next: NextFunction) => {
+    return res.status(200).json({
+        message: 'convert GetRates success',
+        rates: rates
+    });
+};
+
+export default { convertMoney, convertGetRates };
