@@ -2,10 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import mongoose from 'mongoose';
 import url from 'url';
 import convert from '../lib/cashify/convert';
-import { Convert, ConvertQuery } from '../lib/quicktype/convertQuery';
 import Transaction from '../models/transaction';
-//
-//   const convertQuery = Convert.toConvertQuery(json);
 
 // rates with EUR base from 12.4. 2022, in case API doesn't work (limit reached etc..)
 const rates = {

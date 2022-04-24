@@ -1,5 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import logging from '../config/logging';
+import config from '../config/config';
 import ITransaction from '../interfaces/transaction';
 
 const TransactionSchema: Schema = new Schema(
@@ -11,7 +12,8 @@ const TransactionSchema: Schema = new Schema(
     },
     {
         timestamps: true,
-        collection: 'money-data'
+        // collection: 'money-data'
+        collection: config.mongo.collectionname
     }
 );
 

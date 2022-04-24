@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-
 dotenv.config();
 
 const MONGO_OPTIONS = {
@@ -12,24 +11,26 @@ const MONGO_OPTIONS = {
     retryWrites: true
 };
 
-const MONGO_USERNAME = process.env.MONGO_USERNAME || 'purple_case_study';
-const MONGO_PASSWORD = process.env.MONGO_PASSWORD || 'purple_case_study';
-const MONGO_HOST = process.env.MONGO_URL || `cluster0.2gvxz.mongodb.net`;
-const DB_NAME = 'purple-money';
-const PURPLE_COLLECTION_NAME = 'money-data';
+const MONGO_USERNAME: string = process.env.MONGO_USERNAME || 'purple_case_study';
+const MONGO_PASSWORD: string = process.env.MONGO_PASSWORD || 'purple_case_study';
+const MONGO_HOST: string = process.env.MONGO_HOST || 'clusterasd0.2gvxz.mongodb.net';
+const DB_NAME: string = process.env.DB_NAME || 'purple-money';
+const PURPLE_COLLECTION_NAME: string = process.env.PURPLE_COLLECTION_NAME || 'money-data';
 
 const MONGO = {
     host: MONGO_HOST,
     password: MONGO_PASSWORD,
     username: MONGO_USERNAME,
     options: MONGO_OPTIONS,
+    dbname: DB_NAME,
+    collectionname: PURPLE_COLLECTION_NAME,
     url: `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}/${DB_NAME}`
 };
 
 // mongodb+srv://purple_case_study:<password>@cluster0.2gvxz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
-const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME || 'localhost';
-const SERVER_PORT = process.env.SERVER_PORT || 1337;
+const SERVER_HOSTNAME: string = process.env.SERVER_HOSTNAME || 'localhost';
+const SERVER_PORT: string | number = process.env.SERVER_PORT || 1337;
 
 const SERVER = {
     hostname: SERVER_HOSTNAME,

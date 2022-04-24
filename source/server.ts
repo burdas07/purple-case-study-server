@@ -4,6 +4,7 @@ import express from 'express';
 import logging from './config/logging';
 import config from './config/config';
 import mongoose from 'mongoose';
+import axios from 'axios';
 
 // Routes import
 import convertRoutes from './routes/convert';
@@ -12,11 +13,38 @@ import transactionRoutes from './routes/transaction';
 const NAMESPACE = 'Server';
 const router = express();
 
+// let's init our rates here - either from fixer API or using pre-saved data
+
+// Open Exchange rate consts -> USD base in default
+const baseUrlOER = 'http://openexchangerates.org/api/latest.json';
+const API_KEY_OER = '18abbc2925cf4d0384b83f625045a91a';
+
+// Open Exchange Rate
+const getLatestRatesOER = () => {
+    var request = baseUrlOER + '?app_id=' + API_KEY_OER;
+    console.log(request);
+
+    axios.get(request).then((response) => {
+        console.log('Open Exchange Rate API Call');
+        // console.log(response);
+        // console.log(response.data.rates);
+        // console.log(JSON.stringify(response.data.rates, null, 2));
+
+        // Read data structure test
+        // console.log('1 US Dollar equals ' + response.data.rates.GBP + ' British Pounds');
+        var rates = response.data.rates;
+        console.log(rates);
+    });
+};
+
+getLatestRatesOER();
+
 // connect to mongo atlas
 mongoose
     .connect(config.mongo.url, config.mongo.options)
     .then((result) => {
         logging.info(NAMESPACE, 'MongoAtlas Connected');
+        logging.info(NAMESPACE, config.mongo.url);
     })
     .catch((error) => {
         logging.error(NAMESPACE, error.message, error);

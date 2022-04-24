@@ -7,11 +7,15 @@ OPTIONS http://localhost:1337
 GET http://localhost:1337/api/convert/money?from=EUR&to=USD&amount=5378
 
 ###
-GET http://localhost:1337/api/convert/money?from=CZK&to=EUR&amount=5378
+GET http://localhost:1337/api/convert/money?from=CZK&to=EUR&amount=10000
 
 ###
 GET http://localhost:1337/api/convert/getrates
 
 ###
 GET http://localhost:1337/api/transaction
+
+###
+
+GET http://localhost:1337/api/transaction/clear
 
