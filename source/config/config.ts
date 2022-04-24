@@ -11,11 +11,11 @@ const MONGO_OPTIONS = {
     retryWrites: true
 };
 
-const MONGO_USERNAME: string = process.env.MONGO_USERNAME || 'purple_case_study';
-const MONGO_PASSWORD: string = process.env.MONGO_PASSWORD || 'purple_case_study';
-const MONGO_HOST: string = process.env.MONGO_HOST || 'clusterasd0.2gvxz.mongodb.net';
-const DB_NAME: string = process.env.DB_NAME || 'purple-money';
-const PURPLE_COLLECTION_NAME: string = process.env.PURPLE_COLLECTION_NAME || 'money-data';
+const MONGO_USERNAME: string = process.env.MONGO_USERNAME || '';
+const MONGO_PASSWORD: string = process.env.MONGO_PASSWORD || '';
+const MONGO_HOST: string = process.env.MONGO_HOST || '';
+const DB_NAME: string = process.env.DB_NAME || '';
+const PURPLE_COLLECTION_NAME: string = process.env.PURPLE_COLLECTION_NAME || '';
 
 const MONGO = {
     host: MONGO_HOST,
@@ -37,9 +37,18 @@ const SERVER = {
     port: SERVER_PORT
 };
 
+const MONEYAPI_BASEURL: string = process.env.MONEYAPI_BASEURL || '';
+const MONEY_APIKEY: string = process.env.MONEY_APIKEY || '';
+
+const MONEYAPI = {
+    baseurl: MONEYAPI_BASEURL,
+    apikey: MONEY_APIKEY
+};
+
 const config = {
     mongo: MONGO,
-    server: SERVER
+    server: SERVER,
+    moneyapi: MONEYAPI
 };
 
 export default config;
