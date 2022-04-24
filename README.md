@@ -1,5 +1,5 @@
 ﻿# Create .env file
-fill in username, password for Mongo Atlas and Apikey for FixerIO
+fill in Mongo Atlas and FixerIO credentials etc...
  ```
 SERVER_HOSTNAME=localhost
 SERVER_PORT=1337
